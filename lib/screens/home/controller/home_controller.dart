@@ -14,8 +14,6 @@ class HomeController extends GetxController
 
   Future<void> callApi()
   async {
-    // print("==================================");
-    // print("MethodCalled");
     data.value = await ApiHelper.apiHelper.getApi();
   }
 }

@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:api_calling/screens/home/controller/home_controller.dart';
 import 'package:api_calling/screens/home/modal/image_modal.dart';
 import 'package:http/http.dart' as http;
 

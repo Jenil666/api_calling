@@ -16,26 +16,49 @@ class HomeScreen extends StatelessWidget {
           title: Text("Home Screen"),
         ),
         body: Obx(
-          () =>  ListView.builder(
+              () => ListView.builder(
             itemCount: HomeController.controller.data.length,
             itemBuilder: (context, index) {
               return Container(
                 margin: EdgeInsets.all(10),
                 width: 100.w,
+                height: 30.h,
                 child: Column(
                   children: [
-                    CachedNetworkImage(
-                      imageUrl: "${HomeController.controller.data[index].coverPhoto!.urls!.full}",fit: BoxFit.fill,
-                      progressIndicatorBuilder: (context, url, progress) => Center(child: CircularProgressIndicator()),
+                    SizedBox(
+                      height: 20.h,
+                      width: 100.w,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: CachedNetworkImage(
+                          imageUrl: "${HomeController.controller.data[index].coverPhoto!.urls!.full}",
+                          fit: BoxFit.cover,
+                          progressIndicatorBuilder: (context, url, progress) =>
+                              Container(
+                                height: 20.h,
+                                width: 100.w,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Colors.white,
+                                  boxShadow: const [
+                                    BoxShadow(
+                                      color: Colors.black26,
+                                      blurRadius: 5,
+                                      spreadRadius: 2,
+                                    )
+                                  ],
+                                ),
+                              ),
+                        ),
+                      ),
                     ),
                     InkWell(
                       onTap: () {
                         HomeController.controller.index.value = index;
-                        print(index);
                         Get.toNamed('/info');
                       },
                       child: Container(
-                        margin: EdgeInsets.only(bottom: 10,top: 5),
+                        margin: const EdgeInsets.only(bottom: 10, top: 5),
                         height: 7.h,
                         width: 94.7.w,
                         // color: Colors.red,
@@ -44,12 +67,19 @@ class HomeScreen extends StatelessWidget {
                             // SizedBox(width: 5,),
                             CircleAvatar(
                               radius: 25,
-                              backgroundImage: NetworkImage("${HomeController.controller.data[index].user!.profileImage!.large}"),
+                              backgroundImage: NetworkImage(
+                                  "${HomeController.controller.data[index].user!.profileImage!.large}"),
                             ),
-                            SizedBox(width: 15,),
-                            Text("${HomeController.controller.data[index].user!.username}"),
-                            Spacer(),
-                            Icon(Icons.chevron_right,size: 35,),
+                            const SizedBox(
+                              width: 15,
+                            ),
+                            Text(
+                                "${HomeController.controller.data[index].user!.username}"),
+                            const Spacer(),
+                            const Icon(
+                              Icons.chevron_right,
+                              size: 35,
+                            ),
                           ],
                         ),
                       ),
@@ -57,9 +87,12 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
               );
-          },),
+            },
+          ),
         ),
       ),
     );
   }
 }
+
+
