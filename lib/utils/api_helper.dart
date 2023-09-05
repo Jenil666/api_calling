@@ -16,8 +16,6 @@ class ApiHelper
     var res = await http.get(uri);
     List json = jsonDecode(res.body);
     List<ImagesModal> data = json.map((e) => ImagesModal.fromJson(e)).toList();
-    // print("==================================================");
-    // print(data[1].coverPhoto!.urls!.raw);
     return data;
   }
 }
